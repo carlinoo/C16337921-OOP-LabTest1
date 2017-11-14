@@ -45,13 +45,14 @@ void printProducts() {
 
 // This function will display the products to the canvas
 void displayProducts() {
-  float padding = 10;
+  float padding = 15;
   
   // Loop through all products and display the boxes, name and prices
-  // TODO : width should be dynamic
   for (int i = 0; i < products.size(); i++) {
     float px = map(i, 0, products.size(), 50, height - 50);
-    products.get(i).display(px, 250);
+    float pw = width/2 - 100;
+    float ph = (height - 100) / products.size() - padding;
+    products.get(i).display(px, pw, ph);
   }
 }
 
@@ -104,6 +105,7 @@ void display_bill() {
   float padding = 15;
   float bill_y = 50;
   
+  // Loop through the bill and display all products
   for (int i = 0; i < bill.size(); i++) {
    bill_y = (i + 1) * 40 + 60;
    fill(0);

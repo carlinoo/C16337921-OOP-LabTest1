@@ -1,7 +1,7 @@
 class Product {
   String name;
   float price;
-  float y_pos;
+  float y_pos; // position of the box
   
   Product(TableRow tr) {
     this.price = tr.getFloat("Price");
@@ -17,20 +17,20 @@ class Product {
   
   
   // This method will display the item at location x and y
-  void display(float y, float x) {
+  void display(float y, float w, float h) {
     // When we display, we set the x_pos variable
     this.y_pos = y;
     
     fill(170);
-    rect(50, y, 250, 60);
+    rect(50, y, w, h);
     
     // Show the name
     textAlign(LEFT, CENTER);
     fill(255);
-    text(this.name, 60, y + 30);
+    text(this.name, 60, y + h/2);
     
     // Show the price
-    text(nf(this.price, 0 , 2), 260, y + 30);
+    text(nf(this.price, 0 , 2), w + 10, y + h/2);
   }
   
   
