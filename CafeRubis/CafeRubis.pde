@@ -46,25 +46,15 @@ void displayProducts() {
   // TODO : width should be dynamic
   for (int i = 0; i < products.size(); i++) {
     float px = map(i, 0, products.size(), 50, height - 50);
-    //println(px);
-    
-    fill(170);
-    rect(50, px, 250, 60);
-    
-    // Show the name
-    textAlign(LEFT, CENTER);
-    fill(255);
-    text(products.get(i).name, 60, px + 30);
-    
-    // Show the price
-    text(nf(products.get(i).price, 0 , 2), 260, px + 30);
+    products.get(i).display(px, 250);
   }
 }
 
 
 
-// This function will print the title to the screen
+// This function will print the title to the screen and the menu
 void printMenu() {
+  fill(255);
   textSize(28);
   textAlign(CENTER);
   text("Cafe Rubis Till System", width/2, 35); 
@@ -73,4 +63,17 @@ void printMenu() {
   strokeWeight(4);
   stroke(255);
   line(width/2, 50, width/2, height - 50);
+  
+  
+  // The Bill menu
+  noStroke();
+  textAlign(CENTER);
+  float size_x = (width - 100) - width/2;
+  float size_y = (height - 100);
+  fill(220);
+  rect(width/2 + 50, 50, size_x, size_y);
+  fill(0);
+
+  textSize(16);
+  text("Your Bill", width/2 + size_x/2 + 50, 80);
 }
