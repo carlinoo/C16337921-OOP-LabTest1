@@ -18,6 +18,7 @@ void setup() {
 
 void draw() {
   printMenu();
+  
 }
 
 
@@ -76,4 +77,17 @@ void printMenu() {
 
   textSize(16);
   text("Your Bill", width/2 + size_x/2 + 50, 80);
+}
+
+
+
+// If mouse is pressed, check which one prdouct has been clicked
+void mousePressed() {
+  for (Product p : products) {
+    if (p.is_clicked()) {
+      // If the product has been clicked, add it to the ArrayList
+      println("Clicked", p.name);
+      return;
+    }
+  }
 }
