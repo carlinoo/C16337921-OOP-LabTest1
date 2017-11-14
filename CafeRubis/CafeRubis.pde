@@ -105,13 +105,17 @@ void display_bill() {
   float bill_y = 50;
   
   for (int i = 0; i < bill.size(); i++) {
-   bill_y = (i + 1) * 40 + 50;
-   fill(255);
-   rect(width/2 + 50, bill_y, (width - 100) - width/2, 30);
+   bill_y = (i + 1) * 40 + 60;
+   fill(0);
+   textAlign(LEFT);
+   text(bill.get(i).name, width/2 + 50 + padding, bill_y);
+   textAlign(RIGHT);
+   text(nf(bill.get(i).price, 0, 2), (width - 50 - padding), bill_y);
+   //rect(width/2 + 50, bill_y, (width - 100) - width/2, 30);
   }
   
   // Print the total
-  fill(0);
+  textAlign(LEFT);
   text("Total:", width/2 + 50 + padding, bill_y + 60);
   textAlign(RIGHT);
   text(nf(total_bill_cost(), 0, 2), (width - 50 - padding), bill_y + 60);
@@ -127,6 +131,6 @@ float total_bill_cost() {
   for (Product b : bill) {
     total += b.price;
   }
-  println(total);
+
   return total;
 }
