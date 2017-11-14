@@ -7,18 +7,22 @@ void setup() {
   background(41);
   table = loadTable("cafe.csv", "header");
   products = new ArrayList<Product>();
+  bill = new ArrayList<Product>();
   
+  // We load the data
   loadData();
   
-  //printProducts();
+  // We display the products to the console
+  printProducts();
   
+  // We display the products to the screen
   displayProducts();
 }
 
 
 void draw() {
   printMenu();
-  
+  display_bill();
 }
 
 
@@ -87,7 +91,42 @@ void mousePressed() {
     if (p.is_clicked()) {
       // If the product has been clicked, add it to the ArrayList
       println("Clicked", p.name);
+      bill.add(p);
       return;
     }
   }
+}
+
+
+// This function will display the bill
+void display_bill() {
+  textAlign(LEFT);
+  float padding = 15;
+  float bill_y = 50;
+  
+  for (int i = 0; i < bill.size(); i++) {
+   bill_y = (i + 1) * 40 + 50;
+   fill(255);
+   rect(width/2 + 50, bill_y, (width - 100) - width/2, 30);
+  }
+  
+  // Print the total
+  fill(0);
+  text("Total:", width/2 + 50 + padding, bill_y + 60);
+  textAlign(RIGHT);
+  text(nf(total_bill_cost(), 0, 2), (width - 50 - padding), bill_y + 60);
+}
+
+
+
+
+// This will get the total price of the bill
+float total_bill_cost() {
+  float total = 0;
+  
+  for (Product b : bill) {
+    total += b.price;
+  }
+  println(total);
+  return total;
 }
